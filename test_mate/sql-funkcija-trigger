@@ -1,0 +1,26 @@
+-- Skalarna funkcija
+CREATE FUNCTION dbo.AddNumbers (@num1 INT, @num2 INT)
+RETURNS INT
+AS
+BEGIN
+    RETURN @num1 + @num2;
+END;
+
+CREATE FUNCTION dbo.GetEmployeesByDept (@deptId INT)
+RETURNS TABLE
+AS
+RETURN (
+    SELECT emp_name, emp_id 
+    FROM Employees 
+    WHERE dept_id = @deptId
+);
+
+CREATE TRIGGER YourTriggerName ON dbo.YourTable
+FOR|AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+     /*Put what ever you want here*/
+     UPDATE AnotherTable
+          SET SomeColumn = AnotherColumn
+     FROM inserted | deleted
+END;
